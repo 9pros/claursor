@@ -1,10 +1,10 @@
 # Claursor
 
-A bridge system that connects code editors (like VSCode/Cursor) to conversation interfaces, enabling seamless integration between your development environment and AI assistants.
+Claursor is a powerful API bridge between Cursor code editor and Claude Desktop. Seamlessly integrate AI assistance into your development workflow - create, edit, analyze, and refactor code through natural language. Features real-time context sharing, file operations, command execution, and intelligent code suggestions.
 
 ## Features
 
-- 🔄 Two-way communication between code editors and conversation interfaces
+- 🔄 Two-way communication between Cursor/VSCode and Claude Desktop
 - 📁 File operations (read, write, open)
 - 🖥️ Command execution in the editor
 - 📊 Code analysis and suggestions
@@ -12,53 +12,92 @@ A bridge system that connects code editors (like VSCode/Cursor) to conversation 
 
 ## Installation
 
-### Using npm (recommended)
+### Installing the Bridge Server
 
 ```bash
 # Install globally
-npm install -g claursor-system
+npm install -g claursor
 
 # Start the bridge server
 claursor start
 ```
 
-### Manual Installation
+### Manual VSCode Extension Installation
 
-1. Clone the repository
-```bash
-git clone https://github.com/9pros/claursor-system.git
-cd claursor-system
-```
+Since the extension is not published on the VSCode Marketplace, you'll need to install it manually:
+
+1. Download the `.vsix` file from the latest release on GitHub
+   - Go to https://github.com/yourusername/claursor/releases
+   - Download the `.vsix` file from the latest release assets
+
+2. Install using VSCode:
+   - Open VSCode
+   - Go to Extensions view (Ctrl+Shift+X)
+   - Click on the "..." menu (top right of Extensions view)
+   - Select "Install from VSIX..."
+   - Navigate to the downloaded `.vsix` file and select it
+
+3. Alternatively, install from command line:
+   ```bash
+   code --install-extension path/to/claursor-vscode-1.0.0.vsix
+   ```
+
+4. Connect to the bridge server:
+   - Open the Command Palette (Ctrl+Shift+P)
+   - Type "Claursor: Connect"
+   - Select the command to connect to the bridge server
+
+### Building the Extension Yourself
+
+If you want to build the extension yourself:
+
+1. Clone this repository
+   ```bash
+   git clone https://github.com/yourusername/claursor.git
+   cd claursor
+   ```
 
 2. Install dependencies
-```bash
-npm install
-pip install -r server/requirements.txt
-```
+   ```bash
+   npm install
+   cd vscode-extension
+   npm install
+   ```
 
-3. Start the bridge server
-```bash
-npm start
-```
+3. Package the extension
+   ```bash
+   cd vscode-extension
+   npm run package
+   ```
 
-## VSCode Extension Installation
-
-1. Open VSCode
-2. Go to Extensions (Ctrl+Shift+X)
-3. Search for "Claursor"
-4. Click Install
-
-Alternatively, install from the command line:
-```bash
-code --install-extension claursor-vscode
-```
+4. The `.vsix` file will be created in the vscode-extension directory
 
 ## Usage
+
+### From Python
+
+```python
+from claursor import ClausorInterface
+
+# Create a bridge instance
+bridge = ClausorInterface()
+
+# Check connection
+if bridge.check_connection():
+    print("Connected to the code editor!")
+    
+    # Create a new file
+    success = bridge.write_file_content(
+        "example.py", 
+        "print('Hello, world!')"
+    )
+    print("File created:", success)
+```
 
 ### From Node.js
 
 ```javascript
-const { Claursor } = require('claursor-system');
+const { Claursor } = require('claursor');
 
 // Create a bridge instance
 const bridge = new Claursor();
@@ -75,26 +114,6 @@ bridge.checkConnection().then(connected => {
 });
 ```
 
-### From Python
-
-```python
-from code_bridge import CursorInterface
-
-# Create a bridge instance
-bridge = CursorInterface()
-
-# Check connection
-if bridge.check_connection():
-    print("Connected to the code editor!")
-    
-    # Create a new file
-    success = bridge.write_file_content(
-        "example.py", 
-        "print('Hello, world!')"
-    )
-    print("File created:", success)
-```
-
 ## Architecture
 
 This system consists of three main components:
@@ -103,9 +122,11 @@ This system consists of three main components:
 2. **VSCode Extension**: Connects to the bridge server and executes actions in the editor
 3. **Client Libraries**: Node.js and Python libraries for interacting with the bridge server
 
-## Contributing
+## Contributing and Support
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions to Claursor! If you're interested in joining the project as a contributor, have feature suggestions, or would like to make a donation to support ongoing development, please reach out directly to max@9pros.com.
+
+Whether you're a developer looking to enhance the codebase, a designer interested in improving the UX, or someone who wants to support this project financially, we'd love to hear from you. All inquiries about participation and support should be directed to the email above.
 
 ## License
 
