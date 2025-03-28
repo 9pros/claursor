@@ -1,0 +1,19 @@
+{
+  "name": "claursor-client",
+  "version": "1.0.0",
+  "description": "Node.js client library for Claursor",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "claursor",
+    "cursor",
+    "vscode"
+  ],
+  "author": "Max Yeremenko",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6.12"
+  }
+}

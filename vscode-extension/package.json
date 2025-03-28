@@ -1,0 +1,71 @@
+{
+  "name": "claursor-vscode",
+  "displayName": "Claursor",
+  "description": "An API bridge between Cursor and Claude Desktop",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "publisher": "9pros",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/9pros/claursor"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claursor.connect",
+        "title": "Code Bridge: Connect to Bridge Server"
+      },
+      {
+        "command": "claursor.disconnect",
+        "title": "Code Bridge: Disconnect from Bridge Server"
+      },
+      {
+        "command": "claursor.sendContext",
+        "title": "Code Bridge: Send Current Context"
+      }
+    ],
+    "configuration": {
+      "title": "Code Bridge",
+      "properties": {
+        "claursor.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of the bridge server"
+        },
+        "claursor.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to the bridge server on startup"
+        },
+        "claursor.pollInterval": {
+          "type": "number",
+          "default": 1000,
+          "description": "Interval (in ms) for polling the bridge server for actions"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.12"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.60",
+    "@types/vscode": "^1.60.0",
+    "eslint": "^8.56.0",
+    "vsce": "^2.15.0"
+  }
+}

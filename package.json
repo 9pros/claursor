@@ -1,0 +1,48 @@
+{
+  "name": "claursor",
+  "version": "1.0.0",
+  "description": "An API bridge between Cursor and Claude Desktop",
+  "main": "lib/node/index.js",
+  "bin": {
+    "code-bridge": "./scripts/start-bridge.js"
+  },
+  "scripts": {
+    "start": "node scripts/start-bridge.js",
+    "postinstall": "node scripts/post-install.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "cursor",
+    "vscode",
+    "bridge",
+    "api",
+    "conversation",
+    "code-editor",
+    "automation"
+  ],
+  "author": "Max Yeremenko",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9pros/claursor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/9pros/claursor/issues"
+  },
+  "homepage": "https://github.com/9pros/claursor#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.12",
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
